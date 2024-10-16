@@ -1,4 +1,4 @@
-package com.egov.socialservice;
+package com.egov.compositorsh;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
