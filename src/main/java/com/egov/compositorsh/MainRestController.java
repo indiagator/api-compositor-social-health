@@ -61,18 +61,16 @@ public class MainRestController {
         }
 
         //STEP 0B: CREATE A TEMPORARY COOKIE
-        Cookie cookie1 = new Cookie("sh-1", citizenid.toString());
+        Cookie cookie1 = new Cookie("sh-1"+citizenid, citizenid.toString());
         cookie1.setMaxAge(60);
 
         if( redisTemplate.opsForValue().get(cookie1.getName()+citizenid) == null )
         {
             //STEP 0C: LOOK FOR THE APPROPRIATE COOKIES
-            if( cookieList.stream().filter(cookie -> cookie.getName().equals("sh-1")).findAny().isEmpty()) // COOKIE_CHECK
+            if( cookieList.stream().filter(cookie -> cookie.getName().equals("sh-1"+citizenid)).findAny().isEmpty()) // COOKIE_CHECK
             {
                 Citizen citizen = new Citizen();
                 citizen.setCitizenid(citizenid);
-
-
 
                 // STEP 1A: GET DATA FROM SOCIAL-SERVICE
                 logger.info("Request received from POSTMAN for the blood-type | social events data");
